@@ -1,0 +1,19 @@
+{
+  "name": "postinggta",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PostingGTA: play wild, post smart. Live Solana market board and creator studio landing.",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "assets": "python -I scripts/prep-assets.py",
+    "build": "node build.mjs",
+    "test": "node scripts/gates.mjs",
+    "check": "node build.mjs && node scripts/gates.mjs",
+    "serve": "node scripts/serve.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "jsdom": "^26.0.0"
+  }
+}

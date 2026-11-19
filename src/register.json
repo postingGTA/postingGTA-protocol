@@ -1,0 +1,17 @@
+{
+  "site": { "state": "stated", "name": "PostingGTA", "url": "https://postinggta.fun" },
+  "chain": { "state": "stated", "name": "Solana", "cluster": "mainnet", "rpc": "https://solana-rpc.publicnode.com" },
+  "ca": { "state": "absent", "value": null },
+  "x": { "state": "stated", "url": "https://x.com/postingGTA" },
+  "github": { "state": "absent", "url": null },
+  "buy": { "state": "absent", "url": null },
+  "market-source": {
+    "state": "stated",
+    "boosts": "https://api.dexscreener.com/token-boosts/top/v1",
+    "tokens": "https://api.dexscreener.com/tokens/v1/solana/{address}",
+    "ownDex": "https://api.dexscreener.com/latest/dex/tokens/{address}",
+    "ownPump": "https://frontend-api.pump.fun/coins/{address}",
+    "pollMs": 60000,
+    "top": 10
+  }
+}

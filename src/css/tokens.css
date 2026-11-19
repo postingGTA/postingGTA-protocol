@@ -1,0 +1,84 @@
+/*
+ * TOKENS — the only file in the project that may contain colour literals.
+ *
+ * PALETTE PROVENANCE
+ * Source: BRAND/LOGO POSTING PNG...png  (IHDR 2000x2000, bit depth 8, colourtype 6 = RGBA)
+ *   alpha histogram: 3,865,817 px a=0 (all RGB 0,0,0 = pure-black transparent), 118,772 px a=255, 15,411 px partial
+ *   -> every resize is premultiplied (scripts/prep-assets.py, PIL 'RGBa').
+ *   Medians of fully-opaque pixels per column band of that file:
+ *     --pink    #fc37b2  mark, left arm        (x 440-520)
+ *     --rose    #fc468d  letter G              (x 840-960)
+ *     --orange  #fd723d  letter T              (x 1130-1200)
+ *     --amber   #fd8b29  letter A, middle      (x 1240-1330)
+ *     --gold    #fec427  letter A, right edge  (x 1400-1480)
+ *     --gold-tip #fdb82d mark tip              (x 740-775)
+ * Source: BRAND/LOGO POSTING PNG.png (opaque version, colourtype 6, alpha all 255)
+ *     --ink     #000001  corner pixel (5,5)
+ *     --violet  #0a001f  upper mid pixel (1000,300)
+ *     --glow    #690246  warm centre pixel (960,1250)
+ * Source: REFERENCE/SAMPUL POSTING JPG.jpg.jpeg (1500x500, JPEG, no alpha)
+ *     --white   #fdfdfd  median of near-white headline pixels
+ * Source: project brief (stated, not sampled)
+ *     --mint    #00ffcc  own-token pulse accent
+ * Everything else below is derived from these with color-mix().
+ */
+:root {
+  --pink: #fc37b2;
+  --rose: #fc468d;
+  --orange: #fd723d;
+  --amber: #fd8b29;
+  --gold: #fec427;
+  --gold-tip: #fdb82d;
+  --ink: #000001;
+  --violet: #0a001f;
+  --glow: #690246;
+  --white: #fdfdfd;
+  --mint: #00ffcc;
+  --color-accent: var(--mint);
+
+  --bg: var(--ink);
+  --panel: color-mix(in srgb, var(--violet) 78%, var(--white) 5%);
+  --panel2: color-mix(in srgb, var(--violet) 62%, var(--white) 9%);
+  --panel-hover: color-mix(in srgb, var(--violet) 70%, var(--glow) 18%);
+  --line: color-mix(in srgb, var(--white) 9%, transparent);
+  --line-strong: color-mix(in srgb, var(--white) 18%, transparent);
+  --text: var(--white);
+  --muted: color-mix(in srgb, var(--white) 62%, var(--violet));
+  --dim: color-mix(in srgb, var(--white) 28%, var(--violet));
+  --up: var(--mint);
+  --down: var(--pink);
+  --sunset: linear-gradient(90deg, var(--pink), var(--orange) 55%, var(--gold));
+  --sunset-diag: linear-gradient(135deg, var(--pink), var(--orange) 55%, var(--gold));
+
+  --veil: color-mix(in srgb, var(--ink) 55%, transparent);
+  --veil-strong: color-mix(in srgb, var(--ink) 80%, transparent);
+  --shade-deep: color-mix(in srgb, var(--ink) 92%, transparent);
+  --shadow: color-mix(in srgb, var(--ink) 80%, transparent);
+  --glass: color-mix(in srgb, var(--violet) 88%, transparent);
+  --glass-bar: color-mix(in srgb, var(--ink) 82%, transparent);
+  --hover-soft: color-mix(in srgb, var(--white) 3%, transparent);
+  --spot: color-mix(in srgb, var(--white) 9%, transparent);
+  --flash-up: color-mix(in srgb, var(--mint) 30%, transparent);
+  --flash-down: color-mix(in srgb, var(--pink) 30%, transparent);
+  --skel-a: color-mix(in srgb, var(--white) 5%, transparent);
+  --skel-b: color-mix(in srgb, var(--white) 11%, transparent);
+  --ring-a: color-mix(in srgb, var(--mint) 55%, transparent);
+  --ring-b: color-mix(in srgb, var(--mint) 0%, transparent);
+  --own-bg: color-mix(in srgb, var(--mint) 7%, transparent);
+  --pink-soft: color-mix(in srgb, var(--pink) 16%, transparent);
+  --orange-soft: color-mix(in srgb, var(--orange) 14%, transparent);
+  --orange-edge: color-mix(in srgb, var(--orange) 38%, transparent);
+  --orange-shadow: color-mix(in srgb, var(--orange) 55%, transparent);
+  --pink-glow: color-mix(in srgb, var(--pink) 32%, transparent);
+  --lit-off: color-mix(in srgb, var(--white) 14%, var(--ink));
+
+  --tile-0: color-mix(in srgb, var(--pink) 34%, var(--violet));
+  --tile-1: color-mix(in srgb, var(--orange) 34%, var(--violet));
+  --tile-2: color-mix(in srgb, var(--gold) 30%, var(--violet));
+  --tile-3: color-mix(in srgb, var(--mint) 26%, var(--violet));
+
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --font: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: Anton, Impact, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}

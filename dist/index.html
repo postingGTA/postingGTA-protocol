@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PostingGTA: play wild, post smart</title>
+  <meta name="description" content="PostingGTA turns game footage into short posts and keeps a live Solana market board beside it. Built around the $POSTING community.">
+  <meta property="og:title" content="PostingGTA: play wild, post smart">
+  <meta property="og:description" content="Short posts from game footage, plus a live Solana market board.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://postinggta.fun">
+  <meta property="og:image" content="https://postinggta.fun/brand/logo.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#000001">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="app.css">
+  <script>document.documentElement.className = "js";</script>
+  <script type="application/json" id="register">{"site":{"state":"stated","name":"PostingGTA","url":"https://postinggta.fun"},"chain":{"state":"stated","name":"Solana","cluster":"mainnet","rpc":"https://solana-rpc.publicnode.com"},"ca":{"state":"absent","value":null},"x":{"state":"stated","url":"https://x.com/postingGTA"},"github":{"state":"absent","url":null},"buy":{"state":"absent","url":null},"market-source":{"state":"stated","boosts":"https://api.dexscreener.com/token-boosts/top/v1","tokens":"https://api.dexscreener.com/tokens/v1/solana/{address}","ownDex":"https://api.dexscreener.com/latest/dex/tokens/{address}","ownPump":"https://frontend-api.pump.fun/coins/{address}","pollMs":60000,"top":10}}</script>
+</head>
+<body>
+<div class="progress" id="progress" aria-hidden="true"><i></i></div>
+
+<div class="topwrap" id="topwrap">
+  <header class="top" id="top">
+    <a class="logo" href="#hero" aria-label="PostingGTA home"><img src="brand/logo.png" width="960" height="300" alt="PostingGTA"></a>
+    <nav aria-label="Sections">
+      <a href="#market">Market</a>
+      <a href="#studio">Studio</a>
+      <a href="#features">Features</a>
+      <a href="#roadmap">Roadmap</a>
+    </nav>
+    <div class="social" id="social">
+      <a class="soc" id="socX" data-record="x" aria-label="PostingGTA on X"></a>
+      <a class="soc" id="socGh" data-record="github" aria-label="PostingGTA on GitHub"></a>
+    </div>
+  </header>
+  <div class="ca-bar" id="caBar" data-state="absent">
+    <span class="ca-k">CA</span>
+    <button class="ca-val" id="caBtn" type="button" aria-disabled="true" disabled>
+      <code id="caText"></code>
+      <span class="ca-c" id="caCopy" aria-live="polite"></span>
+    </button>
+  </div>
+</div>
+
+<main>
+<section class="hero" id="hero">
+  <div class="scene" aria-hidden="true">
+    <div class="mesh" data-depth="0.15"><i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i></div>
+    <div class="vwall" id="wall" data-depth="0.3"></div>
+    <img class="watermark" data-depth="0.7" src="brand/mark.png" width="192" height="192" alt="">
+    <div class="vshade"></div>
+    <div class="vglow"></div>
+    <div class="grain"></div>
+  </div>
+  <div class="hero-in" data-depth="0.08">
+    <span class="pill" id="statusPill" data-state="connecting"><i class="dot"></i><b id="statusText">Connecting</b><span class="pill-sub">Solana market feed</span></span>
+    <h1>Play wild.<br>Post smart.</h1>
+    <p class="three"><span><b>01</b>Load a livestream or recording</span><span><b>02</b>Shape the best cut</span><span><b>03</b>Share across all your feeds</span></p>
+    <div class="cta">
+      <a class="btn big" href="#market">Watch the board</a>
+      <a class="btn big ghost soon" id="buyTop" data-record="buy" data-tip="Not live yet" aria-disabled="true"><i class="coin" aria-hidden="true"></i>Buy $POSTING</a>
+      <a class="btn big ghost" id="ctaX" data-record="x">Follow on X</a>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" id="ticker" aria-label="Live Solana movers"><div class="ticker-track" id="tickerTrack"></div></div>
+
+<section class="wire wrap" id="wire">
+  <div class="wire-copy reveal">
+    <div class="kicker">Streaming from Solana</div>
+    <h2>Eyes on whatever the chain is chasing.</h2>
+    <p class="sub">Boosted tokens scroll past while you edit. One feed powers the ticker, this stack and the board below.</p>
+    <a class="link" href="#market">See the full board →</a>
+  </div>
+  <div class="stack" id="stack" aria-label="Top movers"></div>
+</section>
+
+<section class="board wrap" id="market">
+  <div class="kicker reveal">Market board</div>
+  <h2 class="reveal">Ten hot tokens, one pinned slot.</h2>
+  <p class="sub reveal board-sub">Row one is reserved for $POSTING. The rest are the most boosted Solana pairs, refreshed every minute.</p>
+  <div class="board-card reveal spot" id="boardCard">
+    <div class="row head" aria-hidden="true">
+      <span class="n">#</span><span class="tok">Token</span><span class="c price">Price</span><span class="c chg">24h</span><span class="c vol">Volume</span><span class="c liq">Liquidity</span>
+    </div>
+    <div class="rows" id="rows" role="table" aria-label="Solana market board"></div>
+    <p class="board-note" id="boardNote" role="status" hidden></p>
+  </div>
+</section>
+
+<section class="studio wrap" id="studio">
+  <div class="phone reveal" aria-hidden="true">
+    <div class="screen">
+      <div class="clipbg"><div class="road"></div><div class="car"></div></div>
+      <div class="score"><b id="scoreN">94</b><span>hype</span></div>
+      <div class="hook">LAST EXIT, NO BRAKES</div>
+      <div class="caps" id="caps"></div>
+      <div class="outro"><span>$POSTING</span><small>Cut with PostingGTA</small></div>
+    </div>
+  </div>
+  <div class="studio-copy">
+    <div class="kicker reveal">Studio lab</div>
+    <h2 class="reveal">One take.<br>A whole feed.</h2>
+    <ol class="steps reveal">
+      <li><b>Bring raw footage.</b><span>Recorded sessions, fresh captures, anything on disk. Files stay local until publishing day.</span></li>
+      <li><b>Let the scorer dig.</b><span>Every beat earns a hype rating, a punchy headline and subtitles timed per word.</span></li>
+      <li><b>Ship it tall.</b><span>Vertical export, three caption looks, sized for each short-form feed.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="statement wrap">
+  <p id="statement">Each upload wears the PostingGTA stamp, while every play points back toward $POSTING. Attention is the whole game, so the scoreboard stays public and the community keeps receipts.</p>
+</section>
+
+<section class="bento wrap" id="features">
+  <h2 class="reveal">Built to stay loud.</h2>
+  <div class="grid">
+    <div class="cell wide reveal spot">
+      <div class="mini board-mini">
+        <div class="r"><span class="n">1</span><span class="t">Highway jump, no ramp</span><span class="v">98</span><span class="p">hot</span></div>
+        <div class="r"><span class="n">2</span><span class="t">Heli lands on a rooftop</span><span class="v">91</span><span class="p">warm</span></div>
+        <div class="r"><span class="n">3</span><span class="t">Slow-mo pool cannonball</span><span class="v">84</span><span class="p"></span></div>
+      </div>
+      <h3>Moment scoreboard</h3>
+      <p>Every beat in a session is ranked so the loudest one lands first. <span class="tag">Preview</span></p>
+    </div>
+    <div class="cell reveal spot">
+      <div class="mini rewards"><div class="tok">$P</div><div><b>Community rewards</b><span>Rules published before launch</span><div class="meter"><i></i></div></div></div>
+      <h3>Reward pool</h3>
+      <p>Design notes sit within the whitepaper; numbers stay open. <span class="tag">Planned</span></p>
+    </div>
+    <div class="cell reveal spot">
+      <div class="mini ally"><span class="chip">Creators</span><b>TBA</b></div>
+      <h3>Creator program</h3>
+      <p>Streamers receive a dedicated lane when the studio opens. <span class="tag">Planned</span></p>
+    </div>
+    <div class="cell reveal spot">
+      <div class="mini plats"><span>Reels</span><span>X</span><span>Shorts</span></div>
+      <h3>Every feed at once</h3>
+      <p>One export, three formats, zero re-editing. <span class="tag">Planned</span></p>
+    </div>
+    <div class="cell reveal spot">
+      <div class="mini folder"><div class="f">Recordings folder</div><div class="s"><i></i>Watching</div></div>
+      <h3>Drop-folder import</h3>
+      <p>Point it at your capture directory and new files queue themselves. <span class="tag">Planned</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="roadmap wrap" id="roadmap">
+  <div class="kicker reveal">Roadmap</div>
+  <h2 class="reveal">Three moves, in order.</h2>
+  <div class="tiers">
+    <div class="tier reveal spot"><div class="x">01</div><div class="need">Launch the board</div><div class="perk">Live market feed, pinned $POSTING slot, public site.</div></div>
+    <div class="tier reveal spot"><div class="x">02</div><div class="need">Ship the studio</div><div class="perk">Scorer, subtitles plus vertical export, in early access.</div></div>
+    <div class="tier top reveal spot"><div class="x">03</div><div class="need">Turn on rewards</div><div class="perk">Pool rules, creator lane, one-tap cross-posting.</div></div>
+  </div>
+  <p class="fine reveal">Phases describe intent, not promises. Details and open questions sit inside the repository whitepaper.</p>
+</section>
+
+<section class="final">
+  <div class="final-in reveal">
+    <div class="kicker">Next up</div>
+    <h2>Hit post. Watch the board.</h2>
+    <a class="btn big" href="#market">Watch the board again</a>
+  </div>
+</section>
+</main>
+
+<footer class="wrap">
+  <a class="logo" href="#hero" aria-label="PostingGTA home"><img src="brand/logo.png" width="960" height="300" alt="PostingGTA"></a>
+  <div class="links"><a href="#market">Market</a><a href="#studio">Studio</a><a href="#roadmap">Roadmap</a></div>
+  <p>PostingGTA stays an independent fan build. It has no link with any studio or publisher behind a game it mentions, and their marks stay theirs. $POSTING behaves as a speculative meme token with zero promised return. Market numbers arrive from public third-party feeds and can be wrong or slow.</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
